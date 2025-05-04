@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Migration from Azure DevOps to GitLab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-left: 6px solid #007bff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        ul {
+            margin-top: 10px;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 20px auto;
+        }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🚀 Migration from Azure DevOps to GitLab</h1>
+
+<div class="section">
+    <h2>🔍 Introduction</h2>
+    <p>As organizations grow and mature in their DevOps practices, it's essential to continuously align tooling with evolving needs. One of our recent success stories involved helping a client transition from Azure DevOps (ADO) to GitLab for managing Infrastructure as Code (IaC) deployments.</p>
+    <p>The client had originally adopted ADO pipelines—powered by a self-hosted ADO Server Express Edition on a Windows VM in Azure and Linux-based ADO agents—for deploying their Platform Landing Zone.</p>
+    <p>This zone spanned across five critical Azure subscriptions:</p>
+    <ul>
+        <li>🔹 Connectivity</li>
+        <li>🔹 Security</li>
+        <li>🔹 Management</li>
+        <li>🔹 Identity</li>
+        <li>🔹 Common Services</li>
+    </ul>
+    <p>While the initial plan was to upgrade to ADO Enterprise Edition, the client was already leveraging GitLab for application development. To streamline operations and avoid the additional licensing costs, the decision was made to consolidate their CI/CD pipelines within GitLab.</p>
+</div>
+
+<div class="section">
+    <h2>🧩 Problem Statement</h2>
+    <p>The primary challenge was to migrate complex, production-grade ADO pipelines to GitLab with minimal disruption to ongoing infrastructure deployments. An earlier assessment by another team projected a 2–3 month effort involving four full-time resources—an impractical timeline given the client’s fast-paced operational requirements.</p>
+</div>
+
+<div class="section">
+    <h2>💡 Solution Overview</h2>
+    <p>Given the urgency, our team stepped in, assumed full ownership, and successfully completed the migration in just two weeks. Our approach was strategic and laser-focused:</p>
+    <ul>
+        <li>Provisioning GitLab Runners</li>
+        <li>Refactoring Terraform repositories</li>
+        <li>Designing new GitLab pipelines tailored for infrastructure deployment</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🛠 Activities Performed</h2>
+    <ol>
+        <li><strong>Repository Setup</strong>
+            <ul>
+                <li><code>azure-iac-terraform-modules</code>: Holds reusable root modules.</li>
+                <li><code>azure-infra-deployments</code>: Contains calling modules.</li>
+            </ul>
+        </li>
+        <li><strong>Code Migration & Testing</strong>
+            <ul>
+                <li>Migrated IaC modules to GitLab</li>
+                <li>Refactored calling modules</li>
+                <li>Updated all references</li>
+            </ul>
+        </li>
+        <li><strong>GitLab Variable Configuration</strong>
+            <ul>
+                <li>Defined environment-specific credentials securely</li>
+            </ul>
+        </li>
+        <li><strong>GitLab Runner Deployment</strong>
+            <ul>
+                <li>Terraform runner on AKS with tools: git, az cli, terraform, tflint, checkov</li>
+            </ul>
+        </li>
+        <li><strong>Pipeline Development</strong>
+            <ul>
+                <li>Modular and reusable Terraform deployment pipeline</li>
+            </ul>
+        </li>
+        <li><strong>Pipeline Enhancements</strong>
+            <ul>
+                <li>Dynamic variables (Environment, Resource)</li>
+                <li>6 stages: Setup, Init, Validate, Scan, Plan, Apply</li>
+            </ul>
+        </li>
+        <li><strong>Containerized Execution</strong>
+            <ul>
+                <li>Each stage isolated for performance and security</li>
+                <li>GitLab Artifacts used for data passing</li>
+            </ul>
+        </li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2>♾️⚙️ Pipeline Diagram</h2>
+    <img src="a3185d09-1f7d-4704-98cf-dcfc00c91d62.png" alt="Pipeline Diagram">
+</div>
+
+<div class="section">
+    <h2>✅ Outcome</h2>
+    <ul>
+        <li>Delivered in 2 weeks (vs estimated 2–3 months)</li>
+        <li>No disruption to deployments</li>
+        <li>Aligned with GitLab workflows</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🎯 Business Impact</h2>
+    <ul>
+        <li>🔹 Cost Savings</li>
+        <li>🔹 Operational Efficiency</li>
+        <li>🔹 Improved Maintainability</li>
+        <li>🔹 Faster Time-to-Deploy</li>
+    </ul>
+</div>
+
+<div class="section disclaimer">
+    <h2>📌 Final Thoughts & Disclaimer</h2>
+    <p>This migration was not just a tool switch—it was a strategic move to future-proof the client’s infrastructure delivery model. By unifying deployment practices under GitLab, the client now benefits from a modern, scalable, and cost-effective DevOps ecosystem.</p>
+    <p>Views expressed here are solely mine and may not directly or indirectly refer Kyndryl position. This is for pure educational purposes only. Kyndryl does not endorse or approve, and assumes no responsibility for, the content, accuracy or completeness of the information presented. The Information is general information only and is not, and is not intended as, professional, or legal advice to a user.</p>
+</div>
+
+</body>
+</html>
